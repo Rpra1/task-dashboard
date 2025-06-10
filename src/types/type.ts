@@ -17,7 +17,7 @@ export interface modalInterfaceProps {
     onClose: () => void;
     onCreate: (task: Task) => void;
     onEdit?: (task: Task) => void;
-    taskToEdit?: Task;
+    taskToEdit: Task | null;
 }
 
 export interface tableInterfaceProps{
@@ -37,16 +37,17 @@ export interface mobileListInterfaceProps{
     onDelete: (id: string) => void;
 }
 
-export interface taskFilterInterface {
-    assignee: string;
-    status: string;
-    priority: string;
-    dateRange: [];
+export interface TaskFilterInterface {
+    assignee?: string;
+    status?: string;
+    priority?: string;
+    dateRange?: any;
 }
 
+
 export interface taskFilterInterfaceProps{
-    filters:taskFilterInterface[];
+    filters:TaskFilterInterface;
     pageSize: number;
-    setPageSize: (value)=>void;
-    handleFilterChange:(filterName,filterValue)=>void;
+    setPageSize: (value:any)=>void;
+    handleFilterChange:(filterName: string,filterValue: any)=>void;
 }

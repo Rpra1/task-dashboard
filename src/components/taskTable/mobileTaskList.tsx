@@ -8,9 +8,8 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 
 
-const MobileTaskList: React.FC = (props: mobileListInterfaceProps) => {
+const MobileTaskList: React.FC<mobileListInterfaceProps> = ({ tasks,pageSize,onEdit,onDelete }) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const { tasks,pageSize,onEdit,onDelete }=props;
 
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
@@ -24,14 +23,14 @@ const MobileTaskList: React.FC = (props: mobileListInterfaceProps) => {
                         <Button
                             type="text"
                             icon={<EditOutlined />}
-                            onClick={() => onEdit(task)}
+                            onClick={() => onEdit?.(task)}
                             style={{ marginRight: 8 }}
                         />
                         <Button
                             type="text"
                             danger
                             icon={<DeleteOutlined />}
-                            onClick={() => onDelete(task.id)}
+                            onClick={() => onDelete?.(task.id)}
                         />
                     </>
                 }>

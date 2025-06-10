@@ -1,13 +1,12 @@
 import styles from "./taskTable.module.css";
 import {DatePicker, Input, Select} from "antd";
 import React from "react";
-import {taskFilterInterfaceProps} from "../../types/type";
+import {tableInterfaceProps, taskFilterInterfaceProps} from "../../types/type";
 const {Search} = Input;
 const {Option} = Select;
 const { RangePicker } = DatePicker;
 
-const TaskFilter = (props:taskFilterInterfaceProps) =>{
-    const {filters,pageSize,setPageSize,handleFilterChange}=props;
+const TaskFilter: React.FC<taskFilterInterfaceProps> = ({filters,pageSize,setPageSize,handleFilterChange}) =>{
 
     return (
         <div className={styles.tableFilter}>

@@ -17,8 +17,8 @@ const CreateTaskModal: React.FC<modalInterfaceProps> = ({open, onClose, onCreate
         form.validateFields().then((values: Task) => {
             const formattedTask: Task = {
                 ...values,
-                startDate: values.startDate.format('YYYY-MM-DD'),
-                dueDate: values.dueDate.format('YYYY-MM-DD'),
+                startDate: dayjs(values.startDate).format('YYYY-MM-DD'),
+                dueDate: dayjs(values.dueDate).format('YYYY-MM-DD'),
                 id: taskToEdit?.id ?? Date.now().toString()
             };
 

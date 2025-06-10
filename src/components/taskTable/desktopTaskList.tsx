@@ -7,7 +7,7 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const priorityOrder = { LOW: 1, MEDIUM: 2, HIGH: 3 }
 
-const DesktopTaskList: React.FC<tableInterfaceProps> = ({tasks,loading,pageSize,onEdit,onDelete}) => {
+const DesktopTaskList: React.FC<tableInterfaceProps> = ({tasks,setTasks,loading,pageSize,onEdit,onDelete}) => {
     const columns: ColumnsType<Task> = [
         {
             title: 'Title',
@@ -62,13 +62,13 @@ const DesktopTaskList: React.FC<tableInterfaceProps> = ({tasks,loading,pageSize,
                 <>
                     <Button
                         icon={<EditOutlined />}
-                        onClick={() => onEdit(record)}
+                        onClick={() => onEdit?.(record)}
                         style={{ marginRight: 8 }}
                     />
                     <Button
                         danger
                         icon={<DeleteOutlined />}
-                        onClick={() => onDelete(record.id)}
+                        onClick={() => onDelete?.(record.id)}
                     />
                     </>
             ),

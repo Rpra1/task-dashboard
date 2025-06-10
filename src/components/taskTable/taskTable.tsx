@@ -7,7 +7,7 @@ import DesktopTaskList from "./desktopTaskList";
 import {useIsMobile} from '../../hooks/useIsMobile';
 import MobileTaskList from "./mobileTaskList";
 import {ColumnsType} from "antd/es/table";
-import {tableInterfaceProps, Task} from "../../types/type";
+import {tableInterfaceProps, Task, TaskFilterInterface} from "../../types/type";
 import CreateTaskModal from "./createTaskModal";
 import TaskFilter from "./taskFilter";
 import { useDispatch } from 'react-redux';
@@ -21,7 +21,7 @@ const TaskTable: React.FC<tableInterfaceProps> = ({ tasks, loading, setTasks }) 
     const [searchText, setSearchText] = useState('');
     const [pageSize, setPageSize] = useState(5);
     const [modalOpen, setModalOpen] = useState(false);
-    const [filters, setFilters] = useState({
+    const [filters, setFilters] = useState<TaskFilterInterface>({
         assignee: undefined,
         status: undefined,
         priority: undefined,
@@ -66,7 +66,7 @@ const TaskTable: React.FC<tableInterfaceProps> = ({ tasks, loading, setTasks }) 
         localStorage.setItem('tasks', JSON.stringify(newTasks));
     };
 
-    const handleFilterChange = (key, value) => {
+    const handleFilterChange = (key: any, value: any) => {
         const updatedFilters = { ...filters, [key]: value };
         setFilters(updatedFilters);
     };
@@ -132,7 +132,7 @@ const TaskTable: React.FC<tableInterfaceProps> = ({ tasks, loading, setTasks }) 
             <TaskFilter filters={filters} pageSize={pageSize} setPageSize={setPageSize} handleFilterChange={handleFilterChange}/>
 
             {isMobile ? <MobileTaskList tasks={filteredValues} pageSize={pageSize} loading={loading} onEdit={handleEdit} onDelete={handleDelete}/> :
-                <DesktopTaskList tasks={filteredValues} pageSize={pageSize} loading={loading} onEdit={handleEdit} onDelete={handleDelete}/>}
+                <DesktopTaskList tasks={filteredValues} setTasks={setTasks} pageSize={pageSize} loading={loading} onEdit={handleEdit} onDelete={handleDelete}/>}
         </div>
     );
 };
